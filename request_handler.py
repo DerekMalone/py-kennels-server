@@ -1,6 +1,10 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from views import get_all_animals
+from views import get_all_animals, get_all_employees
+
+# import views
+# NOTE: Above can be used to import as well but requires dot notation to access functions stored in views __init__.py package.
+# from views import get_all_employees
 
 
 # Here's a class. It inherits from another class.
@@ -29,9 +33,11 @@ class HandleRequests(BaseHTTPRequestHandler):
             # In Python, this is a list of dictionaries
             # In JavaScript, you would call it an array of objects
             response = get_all_animals()
+            # HACK: below is a representation of using dot notation to access function in package.
+            # response = views.get_all_animals()
 
-        elif self.path == "/owners":
-            response = "get lost"
+        elif self.path == "/employees":
+            response = get_all_employees()
 
         else:
             response = []
