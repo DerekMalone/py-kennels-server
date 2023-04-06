@@ -18,9 +18,25 @@ def get_single_employee(id):
 
     return requested_employee
 
+
 def create_employee(employee):
     max_id = EMPLOYEES[-1]["id"]
-    new_id = max_id+ 1
+    new_id = max_id + 1
     employee["id"] = new_id
     EMPLOYEES.append(employee)
     return employee
+
+
+def delete_employee(id):
+    """Deletes employee from list
+
+    Args:
+        id (int): employee id to be deleted
+    """
+    employee_index = None
+    for index, employee in enumerate(EMPLOYEES):
+        if employee["id"] == id:
+            employee_index = index
+
+    if employee_index:
+        EMPLOYEES.pop(employee_index)

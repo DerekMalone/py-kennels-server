@@ -55,10 +55,10 @@ def create_animal(animal):
     """Posts new animal
 
     Args:
-        animal (obj): name, species, customerId
+        animal (dict): animal to be added to list
 
     Returns:
-        animal: id, name, species, customerId
+        animal with id on it
     """
     # Get the id value of the last animal in the list
     max_id = ANIMALS[-1]["id"]
@@ -74,3 +74,25 @@ def create_animal(animal):
 
     # Return the dictionary with 'id' property added
     return animal
+
+
+def delete_animal(id):
+    """Deletes and animal from ANIMALS List
+
+    Args:
+        id (int): animal id
+    """
+    # Initial -1 value for animal index, in case one isn't found
+    animal_index = None
+    # animal_index = -1
+
+    # Iterate the ANIMAL list, but use enumerate() so that you
+    # can access the index value of each item
+    for index, animal in enumerate(ANIMALS):
+        if animal["id"] == id:
+            animal_index = index
+
+    if animal_index:
+        ANIMALS.pop(animal_index)
+    # if animal_index >= 0:
+    #     ANIMALS.pop(animal_index)
