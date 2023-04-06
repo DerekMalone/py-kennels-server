@@ -7,3 +7,45 @@ ANIMALS = [
 
 def get_all_animals():
     return ANIMALS
+
+
+# # REVIEW: Need to ask Hannah to explain this.
+# a = ("MNNIT Allahabad", 5000, "Engineering")
+
+# # HACK: a = ("NSS", 2000, "Software Development") => this does not reassign the value it just
+# # HACK: creates a new variable of a and erases the previous one.
+
+# # this lines UNPACKS values
+# # of variable a
+# (
+#     college,
+#     student,
+#     type_ofcollege,
+# ) = a  # HACK: This is just called deconstruction where each item on the left is a variable
+
+# # HACK: an array is called a list in Python.
+
+# # print college name
+# print(college)
+
+# # print no of student
+# print(student)
+
+# # print type of college
+# print(type_ofcollege)
+
+
+# Function with a single parameter
+def get_single_animal(id):
+    # Variable to hold the found animal, if it exists
+    requested_animal = None
+
+    # Iterate the ANIMALS list above. Very similar to the
+    # for..of loops you used in JavaScript.
+    for animal in ANIMALS:
+        # Dictionaries in Python use [] notation to find a key
+        # instead of the dot notation that JavaScript used.
+        if animal["id"] == id:
+            requested_animal = animal
+
+    return requested_animal
