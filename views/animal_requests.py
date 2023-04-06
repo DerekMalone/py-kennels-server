@@ -9,13 +9,21 @@ def get_all_animals():
     return ANIMALS
 
 
-# REVIEW: Need to ask Hannah to explain this.
+# # REVIEW: Need to ask Hannah to explain this.
 # a = ("MNNIT Allahabad", 5000, "Engineering")
 
-# # a = ("NSS", 12, "Soft Dev")
+# # HACK: a = ("NSS", 2000, "Software Development") => this does not reassign the value it just
+# # HACK: creates a new variable of a and erases the previous one.
+
 # # this lines UNPACKS values
 # # of variable a
-# (college, student, type_ofcollege) = a
+# (
+#     college,
+#     student,
+#     type_ofcollege,
+# ) = a  # HACK: This is just called deconstruction where each item on the left is a variable
+
+# # HACK: an array is called a list in Python.
 
 # # print college name
 # print(college)
