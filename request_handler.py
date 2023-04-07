@@ -12,9 +12,11 @@ from views import (
     get_all_locations,
     get_single_location,
     create_location,
+    delete_location,
     get_all_customers,
     get_single_customer,
     create_customer,
+    delete_customer,
 )
 
 # import views
@@ -128,13 +130,13 @@ class HandleRequests(BaseHTTPRequestHandler):
         if resource == "animals":
             new_dictionary = create_animal(post_body)
 
-        if resource == "employee":
+        if resource == "employees":
             new_dictionary = create_employee(post_body)
 
-        if resource == "location":
+        if resource == "locations":
             new_dictionary = create_location(post_body)
 
-        if resource == "customer":
+        if resource == "customers":
             new_dictionary = create_customer(post_body)
 
         # Encode the new animal and send in response
@@ -159,7 +161,11 @@ class HandleRequests(BaseHTTPRequestHandler):
         if resource == "employees":
             delete_employee(id)
 
-        # TODO: Need to complete DELETE for Location and Customer
+        if resource == "locations":
+            delete_location(id)
+
+        if resource == "customers":
+            delete_customer(id)
 
         self.wfile.write("".encode())  # This is completely unnecessary!
 
