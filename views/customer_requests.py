@@ -10,6 +10,7 @@ def get_single_customer(id):
     for customer in CUSTOMERS:
         if customer["id"] == id:
             requested_customer = customer
+            break
 
     return requested_customer
 
@@ -23,10 +24,14 @@ def create_customer(customer):
 
 
 def delete_customer(id):
-    customer_index = None
     for index, customer in enumerate(CUSTOMERS):
         if customer["id"] == id:
-            customer_index = index
+            CUSTOMERS.pop(index)
+            break
 
-    if customer_index:
-        CUSTOMERS.pop(customer_index)
+
+def update_customer(id, new_customer):
+    for index, customer in enumerate(CUSTOMERS):
+        if customer["id"] == id:
+            CUSTOMERS[index] = new_customer
+            break

@@ -15,6 +15,7 @@ def get_single_employee(id):
     for employee in EMPLOYEES:
         if employee["id"] == id:
             requested_employee = employee
+            break
 
     return requested_employee
 
@@ -33,10 +34,14 @@ def delete_employee(id):
     Args:
         id (int): employee id to be deleted
     """
-    employee_index = None
     for index, employee in enumerate(EMPLOYEES):
         if employee["id"] == id:
-            employee_index = index
+            EMPLOYEES.pop(index)
+            break
 
-    if employee_index:
-        EMPLOYEES.pop(employee_index)
+
+def update_employee(id, new_employee):
+    for index, employee in enumerate(EMPLOYEES):
+        if employee["id"] == id:
+            EMPLOYEES[index] = new_employee
+            break
