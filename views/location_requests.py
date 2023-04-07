@@ -19,6 +19,7 @@ def get_single_location(id):
         # instead of the dot notation that JavaScript used.
         if location["id"] == id:
             requested_location = location
+            break
     return requested_location
 
 
@@ -44,3 +45,11 @@ def delete_location(id):
     for index, location in enumerate(LOCATIONS):
         if location["id"] == id:
             LOCATIONS.pop(index)
+            break
+
+
+def update_location(id, new_location):
+    for index, location in enumerate(LOCATIONS):
+        if location["id"] == id:
+            LOCATIONS[index] = new_location
+            break
