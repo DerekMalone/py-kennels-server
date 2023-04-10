@@ -1,7 +1,7 @@
 EMPLOYEES = [
-    {"id": 1, "name": "Doug", "locationId": 1},
-    {"id": 2, "name": "Steve"},
-    {"id": 3, "name": "Hannah"},
+    {"id": 1, "name": "Doug", "location_id": 1},
+    {"id": 2, "name": "Steve", "location_id": 2},
+    {"id": 3, "name": "Hannah", "location_id": 1},
 ]
 
 
