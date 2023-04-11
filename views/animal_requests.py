@@ -1,3 +1,6 @@
+from .customer_requests import get_single_customer
+from .location_requests import get_single_location
+
 ANIMALS = [
     {
         "id": 1,
@@ -68,6 +71,16 @@ def get_single_animal(id):
         # instead of the dot notation that JavaScript used.
         if animal["id"] == id:
             requested_animal = animal
+            requested_animal["customer"] = get_single_customer(
+                requested_animal["customerId"]
+            )
+            requested_animal["location"] = get_single_location(
+                requested_animal["locationId"]
+            )
+            if "customerId" in requested_animal:
+                del requested_animal["customerId"]
+            if "locationId" in requested_animal:
+                del requested_animal["locationId"]
             break
 
     return requested_animal
