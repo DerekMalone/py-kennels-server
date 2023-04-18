@@ -1,3 +1,4 @@
+from urllib.parse import urlparse, parse_qs
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from views import (
@@ -60,6 +61,25 @@ class HandleRequests(BaseHTTPRequestHandler):
             pass  # Request had trailing slash: /animals/
 
         return (resource, id)  # This is a tuple
+
+    # FIXME: Below needs to be reviewed and implemented.
+    # replace the parse_url function in the class
+    # def parse_url(self, path):
+    #     """Parse the url into the resource and id"""
+    #     parsed_url = urlparse(path)
+    #     path_params = parsed_url.path.split('/')  # ['', 'animals', 1]
+    #     resource = path_params[1]
+
+    #     if parsed_url.query:
+    #         query = parse_qs(parsed_url.query)
+    #         return (resource, query)
+
+    #     pk = None
+    #     try:
+    #         pk = int(path_params[2])
+    #     except (IndexError, ValueError):
+    #         pass
+    #     return (resource, pk)
 
     # Here's a method on the class that overrides the parent's method.
     # It handles any GET request.
