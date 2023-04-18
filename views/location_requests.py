@@ -1,3 +1,7 @@
+from models import Location
+import sqlite3
+import json
+
 LOCATIONS = [
     {"id": 1, "name": "Nashville North", "address": "8422 Johnson Pike"},
     {"id": 2, "name": "Nashville South", "address": "209 Emory Drive"},
@@ -5,22 +9,63 @@ LOCATIONS = [
 
 
 def get_all_locations():
-    return LOCATIONS
+    with sqlite3.connect("./kennel.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_curser = conn.cursor()
+
+        db_curser.execute(
+            """
+        SELECT
+            l.id,
+            l.name,
+            l.address
+        FROM location l
+        """
+        )
+
+        locations = []
+
+        dataset = db_curser.fetchall()
+
+        for row in dataset:
+            location = Location(
+                row["id"],
+                row["name"],
+                row["address"],
+            )
+
+            locations.append(location.__dict__)
+
+        return locations
 
 
 # Function with a single parameter
 def get_single_location(id):
-    # Variable to hold the found animal, if it exists
-    requested_location = None
-    # Iterate the ANIMALS list above. Very similar to the
-    # for..of loops you used in JavaScript.
-    for location in LOCATIONS:
-        # Dictionaries in Python use [] notation to find a key
-        # instead of the dot notation that JavaScript used.
-        if location["id"] == id:
-            requested_location = location
-            break
-    return requested_location
+    with sqlite3.connect("./kennel.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_curser = conn.cursor()
+
+        db_curser.execute(
+            """
+        SELECT
+            l.id,
+            l.name,
+            l.address
+        FROM location l
+        WHERE l.id = ?
+        """,
+            (id,),
+        )
+
+        data = db_curser.fetchone()
+
+        location = Location(
+            data["id"],
+            data["name"],
+            data["address"],
+        )
+
+        return location.__dict__
 
 
 def create_location(location):

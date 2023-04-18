@@ -65,9 +65,6 @@ class HandleRequests(BaseHTTPRequestHandler):
     # It handles any GET request.
     def do_GET(self):
         """Handles GET requests to the server"""
-        # Set the response code to 'Ok'
-        self._set_headers(200)
-
         response = {}  # Default response
 
         # Your new console.log() that outputs to the terminal
@@ -87,26 +84,27 @@ class HandleRequests(BaseHTTPRequestHandler):
             # HACK: below is a representation of using dot notation to access function in package.
             # response = views.get_all_animals()
 
-        elif resource == "employees":
+        if resource == "employees":
             if id is not None:
                 response = get_single_employee(id)
             else:
                 response = get_all_employees()
 
-        elif resource == "locations":
+        if resource == "locations":
             if id is not None:
                 response = get_single_location(id)
             else:
                 response = get_all_locations()
 
-        elif resource == "customers":
+        if resource == "customers":
             if id is not None:
                 response = get_single_customer(id)
             else:
                 response = get_all_customers()
-
+        if response is not None:
+            self._set_headers(200)
         else:
-            response = []
+            self._set_headers(404)
 
         # Send a JSON formatted string as a response
         self.wfile.write(json.dumps(response).encode())
