@@ -125,6 +125,8 @@ class HandleRequests(BaseHTTPRequestHandler):
             # see if the query dictionary has an email key
             if query.get("email") and resource == "customers":
                 response = get_customers_by_email(query["email"][0])
+            if query.get("location_id") and resource == "locations":
+                response = get_customers_by_email(query["location_id"][0])
 
         self.wfile.write(json.dumps(response).encode())
 
