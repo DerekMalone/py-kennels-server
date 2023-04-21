@@ -1,7 +1,8 @@
 class Animal:
-    """A member of Kennels. Stores all currently relevant data for 
+    """A member of Kennels. Stores all currently relevant data for
     our animal class in fields.
     """
+
     # Class initializer. It has 5 custom parameters, with the
     # special `self` parameter that every method on a class
     # needs as the first parameter.

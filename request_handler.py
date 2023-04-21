@@ -4,11 +4,14 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from views import (
     get_all_animals,
     get_single_animal,
+    get_animal_by_location,
+    get_animal_by_status,
     create_animal,
     delete_animal,
     update_animal,
     get_all_employees,
     get_single_employee,
+    get_employee_by_location,
     create_employee,
     delete_employee,
     update_employee,
@@ -125,8 +128,12 @@ class HandleRequests(BaseHTTPRequestHandler):
             # see if the query dictionary has an email key
             if query.get("email") and resource == "customers":
                 response = get_customers_by_email(query["email"][0])
-            if query.get("location_id") and resource == "locations":
-                response = get_customers_by_email(query["location_id"][0])
+            if query.get("location_id") and resource == "animals":
+                response = get_animal_by_location(int(query["location_id"][0]))
+            if query.get("location_id") and resource == "employees":
+                response = get_employee_by_location(int(query["location_id"][0]))
+            if query.get("status") and resource == "animals":
+                response = get_animal_by_status(query["status"][0])
 
         self.wfile.write(json.dumps(response).encode())
 
