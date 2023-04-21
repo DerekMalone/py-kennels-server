@@ -3,7 +3,7 @@ class Customer:
     that is currently pertinent.
     """
 
-    def __init__(self, id, name, address, email, password):
+    def __init__(self, id, name, address, email="", password=""):
         self.id = id
         self.full_name = name
         self.address = address
