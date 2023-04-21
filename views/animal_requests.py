@@ -277,26 +277,15 @@ def delete_animal(id):
     Args:
         id (int): animal id
     """
-    # Initial -1 value for animal index, in case one isn't found
-    animal_index = None
-    # animal_index = -1
-
-    # Iterate the ANIMAL list, but use enumerate() so that you
-    # can access the index value of each item
-    for index, animal in enumerate(ANIMALS):
-        if animal["id"] == id:
-            animal_index = index
-            break
-
-    if animal_index:
-        ANIMALS.pop(animal_index)
-    # if animal_index >= 0:
-    #     ANIMALS.pop(animal_index)
-
-    # HACK: above is the same as below, above has unnecessary redundancy
-    #    for index, animal in enumerate(ANIMALS):
-    #        if animal["id"] == id:
-    #           ANIMALS.pop(index)
+    with sqlite3.connect("./kennel.sqlite3") as conn:
+        db_cursor = conn.cursor()
+        db_cursor.execute(
+            """
+        DELETE FROM animal
+        WHERE id = ?
+        """,
+            (id,),
+        )
 
 
 def update_animal(id, new_animal):
