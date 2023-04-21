@@ -28,6 +28,8 @@ from views import (
     update_customer,
 )
 
+# TODO: NEED to debug all errors on front end before moving to chpt 6.
+
 # import views
 # NOTE: Above can be used to import as well but requires dot notation to access
 # functions stored in views __init__.py package.
